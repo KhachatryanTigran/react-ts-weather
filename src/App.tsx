@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { MonthStatistics } from "./pages/MonthStatistics/components/MonthStatistics";
 
+import { Layout } from "./Layout";
+import { Home } from "./pages/Home/components/Home";
+import { Popup } from "./shared/Popup/Popup";
+import { useCustomSelector } from "./Hooks/store";
+const r = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="/month-statistics" element={<MonthStatistics />} />{" "}
+    </Route>
+  )
+);
 function App() {
+  const isShow = useCustomSelector((state) => state.popupSliceReducer.isShow);
+  const weather = useCustomSelector(
+    (state) => state.currenWeatherSliceReducer.weather
+  );
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {" "}
+      {isShow ? <Popup weather={weather} /> : null}
+      <div className="container">
+        <RouterProvider router={r}></RouterProvider>
+      </div>
+    </>
   );
 }
 
