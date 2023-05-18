@@ -1,5 +1,5 @@
 
-Link for test >> [TestApp](react-ts-weather-n4nx9rnpa-khachatryantigran.vercel.app)
+Link for test >> [Test App] (https://react-ts-weather-n4nx9rnpa-khachatryantigran.vercel.app/)
 
 
 # Getting Started with Create React App
