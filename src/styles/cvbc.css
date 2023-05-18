@@ -1,0 +1,7 @@
+:root {
+  --sss: blue;
+  --asd: red;
+}
+h1 {
+  background-color: var(--asd);
+}
